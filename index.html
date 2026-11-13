@@ -3,200 +3,219 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NEON ARENA</title>
-
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+ background:#080a16;color:white;font-family:Arial,sans-serif;
+ min-height:100vh;overflow-x:hidden;
+ background-image:radial-gradient(ellipse at 50% 0%,#39216a 0%,transparent 55%),
+ radial-gradient(ellipse at 90% 80%,#102d54 0%,transparent 45%);
 }
-
-body {
-    background: #080914;
-    color: white;
-    font-family: Arial, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow-x: hidden;
+header{
+ height:72px;padding:0 5%;display:flex;align-items:center;
+ justify-content:space-between;border-bottom:1px solid #ffffff15;
+ background:#080a16aa;
 }
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background:
-    radial-gradient(circle at 20% 30%, #5224a533, transparent 40%),
-    radial-gradient(circle at 80% 70%, #087cbd33, transparent 40%);
-    z-index: -1;
+.brand{font-size:23px;font-weight:1000;letter-spacing:3px}
+.brand span{color:#a78bfa}
+.version{color:#777b9d;font-size:11px;letter-spacing:2px}
+main{max-width:1050px;margin:auto;padding:45px 20px 60px}
+.hero{text-align:center;margin-bottom:35px}
+.tag{
+ display:inline-block;padding:7px 14px;border-radius:30px;
+ background:#8b5cf622;border:1px solid #a78bfa66;
+ color:#c4b5fd;font-size:11px;letter-spacing:2px;
 }
-
-.container {
-    width: 92%;
-    max-width: 900px;
-    text-align: center;
-    padding: 35px 15px;
+h1{
+ font-size:clamp(48px,9vw,85px);font-weight:1000;
+ letter-spacing:4px;margin:18px 0 8px;
+ background:linear-gradient(90deg,#fff,#b9a2ff,#55d8ff);
+ color:transparent;background-clip:text;
 }
-
-.logo {
-    font-size: clamp(45px, 9vw, 85px);
-    font-weight: 1000;
-    letter-spacing: 5px;
-    color: #fff;
-    text-shadow: 0 0 15px #8b5cf6, 0 0 40px #6d28d9;
+.subtitle{color:#9295b2;font-size:14px;letter-spacing:2px}
+.section{margin-top:34px}
+.section-heading{
+ display:flex;align-items:center;justify-content:space-between;
+ margin-bottom:15px;gap:10px;
 }
-
-.subtitle {
-    color: #aaaac5;
-    margin: 12px 0 35px;
-    letter-spacing: 4px;
-    font-size: 12px;
+.section-heading h2{font-size:17px;letter-spacing:2px}
+.section-heading span{font-size:11px;color:#8589a7}
+.modes{
+ display:grid;grid-template-columns:repeat(4,1fr);gap:12px
 }
-
-.section-title {
-    margin-bottom: 18px;
-    font-size: 17px;
-    color: #b9b4d5;
-    letter-spacing: 2px;
+.mode{
+ cursor:pointer;background:#15182a;border:1px solid #343752;
+ border-radius:15px;padding:20px 10px;text-align:center;
+ color:white;transition:.2s;
 }
-
-.modes {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+.mode:hover,.mode.active{
+ border-color:#a78bfa;background:#282044;
+ transform:translateY(-3px);box-shadow:0 0 20px #8b5cf633;
 }
-
-.mode {
-    background: #17182b;
-    border: 2px solid #30314c;
-    border-radius: 15px;
-    padding: 23px 8px;
-    cursor: pointer;
-    transition: .2s;
-    color: white;
+.mode .emoji{font-size:31px;margin-bottom:12px}
+.mode strong{display:block;font-size:15px}
+.mode small{display:block;color:#9295b2;margin-top:7px}
+.characters{
+ display:grid;grid-template-columns:repeat(4,1fr);gap:12px
 }
-
-.mode:hover, .mode.active {
-    border-color: #a78bfa;
-    background: #292044;
-    transform: translateY(-5px);
-    box-shadow: 0 0 20px #8b5cf644;
+.character{
+ background:#15182a;border:2px solid #343752;border-radius:16px;
+ padding:15px 8px;cursor:pointer;text-align:center;transition:.2s;
 }
-
-.mode .emoji {
-    font-size: 35px;
-    margin-bottom: 12px;
+.character:hover,.character.active{
+ border-color:var(--c);background:#25243a;
+ box-shadow:0 0 20px color-mix(in srgb,var(--c) 35%,transparent);
 }
-
-.mode h3 {
-    font-size: 17px;
+.avatar{
+ width:78px;height:78px;margin:0 auto 12px;
+ border-radius:25px;background:color-mix(in srgb,var(--c) 18%,#17182a);
+ display:flex;align-items:center;justify-content:center;
+ position:relative;
 }
-
-.mode p {
-    color: #aaa;
-    font-size: 12px;
-    margin-top: 7px;
+.avatar .body{
+ width:48px;height:53px;border-radius:19px 19px 15px 15px;
+ background:var(--c);position:relative;
+ box-shadow:inset -7px -5px 0 #0003,0 5px 12px #0008;
 }
-
-.play {
-    margin-top: 35px;
-    padding: 18px 65px;
-    border: none;
-    border-radius: 12px;
-    background: linear-gradient(90deg, #7c3aed, #2563eb);
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 0 25px #7c3aed66;
-    transition: .2s;
+.avatar .helmet{
+ position:absolute;width:37px;height:27px;border-radius:13px;
+ background:#182035;border:4px solid color-mix(in srgb,var(--c) 80%,white);
+ top:8px;left:6px;
 }
-
-.play:hover {
-    transform: scale(1.06);
+.avatar .eyes{
+ position:absolute;top:17px;left:12px;width:7px;height:7px;
+ border-radius:50%;background:#9eeaff;
+ box-shadow:12px 0 #9eeaff;
 }
-
-.instructions {
-    margin-top: 30px;
-    color: #85859f;
-    font-size: 12px;
-    line-height: 2;
+.avatar .feet{
+ position:absolute;bottom:-5px;left:6px;width:13px;height:9px;
+ border-radius:4px;background:#25283c;
+ box-shadow:17px 0 #25283c;
 }
-
-@media(max-width:600px) {
-    .modes {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.character strong{font-size:13px}
+.character small{display:block;color:#9295b2;margin-top:5px;font-size:10px}
+.selected-text{color:#a78bfa;font-size:12px;margin-top:12px}
+.bottom{
+ display:flex;align-items:center;justify-content:center;
+ margin-top:35px;flex-direction:column;gap:15px;
+}
+.play{
+ border:0;border-radius:13px;padding:17px 65px;
+ color:white;font-size:17px;font-weight:900;letter-spacing:2px;
+ cursor:pointer;background:linear-gradient(100deg,#783cf0,#3267ed);
+ box-shadow:0 8px 35px #6335d866;transition:.2s;
+}
+.play:hover{transform:scale(1.04);filter:brightness(1.15)}
+.help{color:#8589a7;font-size:12px;text-align:center;line-height:1.8}
+.footer{
+ text-align:center;color:#5d627d;font-size:10px;
+ letter-spacing:2px;margin-top:40px
+}
+@media(max-width:600px){
+ main{padding-top:28px}
+ .modes,.characters{grid-template-columns:repeat(2,1fr)}
+ header{padding:0 15px}
 }
 </style>
 </head>
-
 <body>
+<header>
+ <div class="brand">⚡ NEON <span>ARENA</span></div>
+ <div class="version">ARCADE EDITION 2.0</div>
+</header>
 
-<div class="container">
+<main>
+ <div class="hero">
+  <div class="tag">LOCAL MULTIPLAYER ARCADE</div>
+  <h1>NEON ARENA</h1>
+  <p class="subtitle">ENTER THE ARENA. COLLECT. SURVIVE. DOMINATE.</p>
+ </div>
 
-    <div class="logo">NEON ARENA</div>
-    <div class="subtitle">ONE ARENA. FOUR PLAYERS. ENDLESS CHAOS.</div>
+ <div class="section">
+  <div class="section-heading">
+   <h2>01 / GAME MODE</h2>
+   <span>CHOOSE YOUR PARTY SIZE</span>
+  </div>
+  <div class="modes">
+   <div class="mode active" onclick="chooseMode(1,this)">
+    <div class="emoji">👤</div><strong>SOLO</strong><small>1 PLAYER</small>
+   </div>
+   <div class="mode" onclick="chooseMode(2,this)">
+    <div class="emoji">👥</div><strong>DUOS</strong><small>2 PLAYERS</small>
+   </div>
+   <div class="mode" onclick="chooseMode(3,this)">
+    <div class="emoji">⚡</div><strong>TRIOS</strong><small>3 PLAYERS</small>
+   </div>
+   <div class="mode" onclick="chooseMode(4,this)">
+    <div class="emoji">🏆</div><strong>SQUADS</strong><small>4 PLAYERS</small>
+   </div>
+  </div>
+ </div>
 
-    <div class="section-title">SELECT YOUR GAME MODE</div>
+ <div class="section">
+  <div class="section-heading">
+   <h2>02 / YOUR CHARACTER</h2>
+   <span>CHOOSE YOUR HERO</span>
+  </div>
+  <div class="characters">
+   <div class="character active" style="--c:#a855f7" onclick="chooseCharacter(0,this)">
+    <div class="avatar"><div class="body"><div class="helmet"></div><div class="eyes"></div><div class="feet"></div></div></div>
+    <strong>VIOLET</strong><small>THE PHANTOM</small>
+   </div>
+   <div class="character" style="--c:#38bdf8" onclick="chooseCharacter(1,this)">
+    <div class="avatar"><div class="body"><div class="helmet"></div><div class="eyes"></div><div class="feet"></div></div></div>
+    <strong>AZURE</strong><small>THE RUNNER</small>
+   </div>
+   <div class="character" style="--c:#facc15" onclick="chooseCharacter(2,this)">
+    <div class="avatar"><div class="body"><div class="helmet"></div><div class="eyes"></div><div class="feet"></div></div></div>
+    <strong>SUNNY</strong><small>THE SPARK</small>
+   </div>
+   <div class="character" style="--c:#fb7185" onclick="chooseCharacter(3,this)">
+    <div class="avatar"><div class="body"><div class="helmet"></div><div class="eyes"></div><div class="feet"></div></div></div>
+    <strong>SCARLET</strong><small>THE BLAZE</small>
+   </div>
+  </div>
+  <div class="selected-text" id="selectedText">SELECTED: VIOLET</div>
+ </div>
 
-    <div class="modes">
+ <div class="bottom">
+  <button class="play" onclick="playGame()">ENTER ARENA →</button>
+  <p class="help">
+   WASD / ARROWS / IJKL / TFGH TO MOVE<br>
+   COLLECT GEMS • USE ABILITIES • AVOID THE ENEMIES
+  </p>
+ </div>
 
-        <div class="mode active" onclick="selectMode(1,this)">
-            <div class="emoji">👤</div>
-            <h3>SOLO</h3>
-            <p>1 Player</p>
-        </div>
-
-        <div class="mode" onclick="selectMode(2,this)">
-            <div class="emoji">👥</div>
-            <h3>DUOS</h3>
-            <p>2 Players</p>
-        </div>
-
-        <div class="mode" onclick="selectMode(3,this)">
-            <div class="emoji">⚡</div>
-            <h3>TRIOS</h3>
-            <p>3 Players</p>
-        </div>
-
-        <div class="mode" onclick="selectMode(4,this)">
-            <div class="emoji">🏆</div>
-            <h3>SQUADS</h3>
-            <p>4 Players</p>
-        </div>
-
-    </div>
-
-    <button class="play" onclick="startGame()">PLAY NOW →</button>
-
-    <div class="instructions">
-        LOCAL MULTIPLAYER • SAME COMPUTER<br>
-        COLLECT • DODGE • SURVIVE • WIN
-    </div>
-
-</div>
+ <div class="footer">NEON ARENA © 2026 • BUILT FOR LOCAL MULTIPLAYER</div>
+</main>
 
 <script>
-let selectedPlayers = 1;
+let mode=1;
+let selected=[0,1,2,3];
+const names=["VIOLET","AZURE","SUNNY","SCARLET"];
 
-function selectMode(players, element) {
-    selectedPlayers = players;
-
-    document.querySelectorAll(".mode").forEach(m => {
-        m.classList.remove("active");
-    });
-
-    element.classList.add("active");
+function chooseMode(n,el){
+ mode=n;
+ document.querySelectorAll(".mode").forEach(x=>x.classList.remove("active"));
+ el.classList.add("active");
 }
 
-function startGame() {
-    window.location.href = "game.html?players=" + selectedPlayers;
+function chooseCharacter(n,el){
+ selected[0]=n;
+ document.querySelectorAll(".character").forEach(x=>x.classList.remove("active"));
+ el.classList.add("active");
+ document.getElementById("selectedText").textContent="SELECTED: "+names[n];
+}
+
+function playGame(){
+ const query=new URLSearchParams({
+  players:mode,
+  chars:selected.join(",")
+ });
+ location.href="game.html?"+query.toString();
 }
 </script>
-
 </body>
 </html>
