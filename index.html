@@ -3,170 +3,111 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NEON ARENA: MONSTER MAYHEM</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#090b18;color:white;font-family:Arial,sans-serif}
-header{height:65px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;background:#11152a;border-bottom:1px solid #303653}
-.logo{font-size:21px;font-weight:1000;letter-spacing:2px}
-.logo span{color:#a78bfa}
-main{max-width:1100px;margin:auto;padding:35px 20px 55px}
-.hero{text-align:center;margin-bottom:30px}
-.hero h1{font-size:clamp(38px,8vw,75px);margin:15px 0;background:linear-gradient(90deg,#fff,#a78bfa,#38bdf8);color:transparent;background-clip:text}
-.hero p{color:#969bb8;letter-spacing:2px;font-size:12px}
-.tag{display:inline-block;padding:8px 15px;background:#8b5cf622;color:#c4b5fd;border:1px solid #8b5cf666;border-radius:30px;font-size:11px;letter-spacing:2px}
-.section{margin-top:28px}
-.heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px;gap:10px}
-.heading h2{font-size:15px;letter-spacing:2px}
-.heading span{font-size:11px;color:#858ba8}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.card{background:#171b30;border:2px solid #343a58;border-radius:14px;padding:17px 10px;text-align:center;cursor:pointer;transition:.2s;color:white}
-.card:hover,.card.active{border-color:#a78bfa;background:#292343;transform:translateY(-3px);box-shadow:0 0 20px #8b5cf633}
-.card .emoji{font-size:32px;margin-bottom:10px}
-.card strong{display:block;font-size:14px}
-.card small{display:block;color:#969bb8;margin-top:7px;font-size:11px}
-.player-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
-.tab{padding:10px 15px;border:1px solid #414765;border-radius:8px;background:#171b30;color:#aaa;cursor:pointer}
-.tab.active{border-color:#a78bfa;color:white;background:#342653}
-.hero-card{position:relative}
-.hero-icon{width:68px;height:68px;margin:0 auto 12px;border-radius:20px;background:var(--c);display:flex;align-items:center;justify-content:center;font-size:35px;box-shadow:inset -8px -8px 0 #0003,0 0 22px color-mix(in srgb,var(--c) 40%,transparent)}
-.arena-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
-.arena-card{border:2px solid #353b57;border-radius:14px;overflow:hidden;background:#171b30;cursor:pointer;transition:.2s}
-.arena-card:hover,.arena-card.active{border-color:#a78bfa;transform:translateY(-3px);box-shadow:0 0 20px #8b5cf633}
-.arena-art{height:110px;display:flex;align-items:center;justify-content:center;font-size:54px}
-.arena-card strong{display:block;padding:12px 12px 4px}
-.arena-card small{display:block;padding:0 12px 13px;color:#9298b3;font-size:11px}
-.arena-card.active strong{color:#c4b5fd}
-.bottom{text-align:center;margin-top:32px}
-.play{padding:17px 60px;border:0;border-radius:11px;background:linear-gradient(100deg,#803cf0,#2768ec);color:white;font-size:17px;font-weight:900;letter-spacing:2px;cursor:pointer;box-shadow:0 8px 30px #673ce655}
-.play:hover{filter:brightness(1.2);transform:scale(1.03)}
-.help{font-size:11px;color:#858ba8;line-height:1.8;margin-top:17px}
-#selectionStatus{font-size:12px;color:#c4b5fd;margin-top:10px}
-@media(max-width:650px){.grid{grid-template-columns:repeat(2,1fr)}.arena-grid{grid-template-columns:1fr}.arena-art{height:85px}main{padding:25px 13px}}
+body{margin:0;background:#070914;color:#fff;font-family:Arial,sans-serif;min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse at 50% 40%,#17204a 0%,#090d20 48%,#050711 100%);z-index:-2}
+body:after{content:"";position:fixed;inset:0;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:48px 48px;transform:perspective(500px) rotateX(55deg) scale(1.8);transform-origin:center bottom;z-index:-1;opacity:.4}
+.wrap{max-width:1100px;margin:auto;padding:35px 22px 55px}
+.top{display:flex;justify-content:space-between;align-items:center;color:#aab6d9;font-size:12px;letter-spacing:3px}
+.logo{font-weight:900;color:#65f4ff}
+.hero{text-align:center;padding:55px 0 25px}
+.tag{display:inline-block;border:1px solid #36d9f766;color:#70efff;padding:8px 15px;border-radius:30px;font-size:11px;letter-spacing:3px;background:#0b1b30}
+h1{font-size:clamp(40px,8vw,86px);line-height:.9;margin:22px 0 14px;font-weight:1000;letter-spacing:-4px;text-shadow:0 0 25px #25dfff55}
+h1 span{color:#51e9ff}
+.subtitle{color:#aeb8d2;font-size:15px}
+.panel{background:linear-gradient(145deg,#151d35eF,#0a1022f2);border:1px solid #6378b34d;border-radius:20px;padding:23px;margin:18px 0;box-shadow:0 18px 55px #0008}
+.panel h2{font-size:13px;letter-spacing:3px;color:#8da6d8;margin:0 0 16px}
+.choices{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.choice{background:#101a30;border:1px solid #3b4a70;color:#dce7ff;border-radius:12px;padding:15px 8px;cursor:pointer;text-align:center;transition:.2s}
+.choice:hover,.choice.active{border-color:#50edff;background:#123047;box-shadow:0 0 20px #22dfff25;transform:translateY(-2px)}
+.choice strong{display:block;font-size:14px;margin-bottom:6px}
+.choice small{color:#92a4c8;font-size:11px}
+.avatars{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.avatar{border:1px solid #35466d;border-radius:14px;background:#0d162b;padding:15px 8px;cursor:pointer;text-align:center;color:white}
+.avatar.active{border-color:#54eaff;box-shadow:0 0 18px #54eaff35}
+.face{width:48px;height:48px;border-radius:50%;margin:0 auto 10px;box-shadow:inset -8px -8px 0 #0004,0 0 20px currentColor}
+.avatar b{display:block;font-size:12px}.avatar small{color:#9aa9c9}
+select{width:100%;background:#0b1429;color:white;border:1px solid #40517a;border-radius:10px;padding:14px;font-size:14px}
+.start{width:100%;padding:20px;border:0;border-radius:13px;background:linear-gradient(90deg,#16cde8,#5677ff);color:#03111c;font-weight:1000;font-size:19px;letter-spacing:2px;cursor:pointer;box-shadow:0 8px 30px #20dfff35;transition:.2s}
+.start:hover{transform:translateY(-3px);filter:brightness(1.15)}
+.footer{text-align:center;color:#62708e;font-size:11px;letter-spacing:2px;margin-top:25px}
+.note{font-size:12px;color:#9eacc9;line-height:1.6}
+@media(max-width:600px){.choices,.avatars{grid-template-columns:repeat(2,1fr)}.hero{padding-top:40px}h1{letter-spacing:-2px}.panel{padding:17px}}
 </style>
 </head>
 <body>
-<header>
- <div class="logo">⚡ NEON <span>ARENA</span></div>
- <span style="color:#8d92b0;font-size:11px">MONSTER MAYHEM</span>
-</header>
-<main>
- <div class="hero">
-  <div class="tag">LOCAL MULTIPLAYER • ARCADE FIGHTING</div>
-  <h1>MONSTER MAYHEM</h1>
-  <p>CHOOSE YOUR TEAM. ENTER THE ARENA. DEFEAT THE MONSTERS.</p>
- </div>
+<div class="wrap">
+  <div class="top"><b class="logo">◆ NEON STUDIOS</b><span>LOCAL CO-OP · ARCADE SURVIVAL</span></div>
+  <header class="hero">
+    <div class="tag">THE MONSTER INVASION HAS BEGUN</div>
+    <h1>NEON <span>ARENA</span></h1>
+    <div class="subtitle">MONSTER MAYHEM — TEAM UP. GEAR UP. SURVIVE.</div>
+  </header>
 
- <div class="section">
-  <div class="heading"><h2>01 / GAME MODE</h2><span>CHOOSE YOUR TEAM SIZE</span></div>
-  <div class="grid" id="modes">
-   <div class="card active" onclick="setMode(1,this)"><div class="emoji">👤</div><strong>SOLO</strong><small>1 PLAYER</small></div>
-   <div class="card" onclick="setMode(2,this)"><div class="emoji">👥</div><strong>DUOS</strong><small>2 PLAYERS</small></div>
-   <div class="card" onclick="setMode(3,this)"><div class="emoji">⚡</div><strong>TRIOS</strong><small>3 PLAYERS</small></div>
-   <div class="card" onclick="setMode(4,this)"><div class="emoji">🏆</div><strong>SQUADS</strong><small>4 PLAYERS</small></div>
-  </div>
- </div>
+  <section class="panel">
+    <h2>01 / SELECT YOUR TEAM</h2>
+    <div class="choices" id="modes">
+      <button class="choice active" data-value="1"><strong>SOLO</strong><small>1 PLAYER</small></button>
+      <button class="choice" data-value="2"><strong>DUOS</strong><small>2 PLAYERS</small></button>
+      <button class="choice" data-value="3"><strong>TRIOS</strong><small>3 PLAYERS</small></button>
+      <button class="choice" data-value="4"><strong>SQUADS</strong><small>4 PLAYERS</small></button>
+    </div>
+  </section>
 
- <div class="section">
-  <div class="heading"><h2>02 / CHARACTER SELECT</h2><span>CHOOSE EACH PLAYER'S HERO</span></div>
-  <div class="player-tabs" id="tabs"></div>
-  <div class="grid" id="heroes"></div>
-  <div id="selectionStatus">PLAYER 1 SELECTED</div>
- </div>
+  <section class="panel">
+    <h2>02 / CHOOSE YOUR HERO</h2>
+    <div class="avatars" id="heroes">
+      <button class="avatar active" data-value="0"><div class="face" style="background:#39e8ff;color:#39e8ff"></div><b>VOLT</b><small>Balanced fighter</small></button>
+      <button class="avatar" data-value="1"><div class="face" style="background:#ffb347;color:#ffb347"></div><b>BLAZE</b><small>Heavy hitter</small></button>
+      <button class="avatar" data-value="2"><div class="face" style="background:#bd83ff;color:#bd83ff"></div><b>PHANTOM</b><small>Quick runner</small></button>
+      <button class="avatar" data-value="3"><div class="face" style="background:#66f29a;color:#66f29a"></div><b>MEDIC</b><small>Team support</small></button>
+    </div>
+    <p class="note">Each player gets a different color in-game. All heroes can shoot, dash, and revive teammates.</p>
+  </section>
 
- <div class="section">
-  <div class="heading"><h2>03 / SELECT YOUR ARENA</h2><span>CHOOSE YOUR BATTLEFIELD</span></div>
-  <div class="arena-grid">
-   <div class="arena-card active" onclick="setArena('city',this)">
-    <div class="arena-art" style="background:linear-gradient(130deg,#27164c,#07517c)">🌃</div>
-    <strong>NEON CITY</strong><small>Balanced battlefield · Cyber monsters</small>
-   </div>
-   <div class="arena-card" onclick="setArena('lava',this)">
-    <div class="arena-art" style="background:linear-gradient(130deg,#641e17,#d45a20)">🌋</div>
-    <strong>LAVA TEMPLE</strong><small>Fiery battlefield · Armored monsters</small>
-   </div>
-   <div class="arena-card" onclick="setArena('ice',this)">
-    <div class="arena-art" style="background:linear-gradient(130deg,#17456c,#6ac8ed)">❄️</div>
-    <strong>FROZEN BASE</strong><small>Frozen battlefield · Fast monsters</small>
-   </div>
-  </div>
- </div>
+  <section class="panel">
+    <h2>03 / CHOOSE YOUR ARENA</h2>
+    <div class="choices" id="arenas">
+      <button class="choice active" data-value="city"><strong>NEON CITY</strong><small>Rainy streets</small></button>
+      <button class="choice" data-value="lava"><strong>LAVA TEMPLE</strong><small>Burning ruins</small></button>
+      <button class="choice" data-value="ice"><strong>FROZEN BASE</strong><small>Arctic station</small></button>
+      <button class="choice" data-value="toxic"><strong>TOXIC ZONE</strong><small>Mutated wasteland</small></button>
+    </div>
+  </section>
 
- <div class="bottom">
-  <button class="play" onclick="launch()">⚔ ENTER BATTLE</button>
-  <p class="help">P1: WASD + F ATTACK + G DASH<br>
-  P2: ARROWS + / ATTACK + . DASH<br>
-  P3: IJKL + U ATTACK + O DASH<br>
-  P4: TFGH + Y ATTACK + R DASH</p>
- </div>
-</main>
+  <section class="panel">
+    <h2>04 / DIFFICULTY</h2>
+    <select id="difficulty">
+      <option value="easy">RECRUIT — Easier monsters</option>
+      <option value="normal" selected>VETERAN — Balanced challenge</option>
+      <option value="hard">NIGHTMARE — Tough monsters</option>
+    </select>
+  </section>
+
+  <button class="start" id="start">▶ START GAME</button>
+  <p class="note" style="text-align:center">LOCAL MULTIPLAYER · ONE KEYBOARD · NO SERVER REQUIRED</p>
+  <div class="footer">NEON ARENA // SURVIVE THE WAVES</div>
+</div>
 <script>
-let mode=1,arena="city",activePlayer=0;
-let choices=[0,1,2,3];
-
-const heroes=[
- {name:"VIOLET",emoji:"🛡️",color:"#a855f7",desc:"BALANCED FIGHTER"},
- {name:"AZURE",emoji:"⚔️",color:"#38bdf8",desc:"FAST ATTACKER"},
- {name:"SUNNY",emoji:"🔥",color:"#facc15",desc:"POWER FIGHTER"},
- {name:"SCARLET",emoji:"💥",color:"#fb7185",desc:"HEAVY HITTER"}
-];
-
-function setMode(n,el){
- mode=n;
- document.querySelectorAll("#modes .card").forEach(x=>x.classList.remove("active"));
- el.classList.add("active");
- activePlayer=Math.min(activePlayer,n-1);
- renderTabs();renderHeroes();
-}
-
-function renderTabs(){
- const tabs=document.getElementById("tabs");
- tabs.innerHTML="";
- for(let i=0;i<mode;i++){
-  const b=document.createElement("button");
-  b.className="tab"+(activePlayer===i?" active":"");
-  b.textContent="PLAYER "+(i+1);
-  b.onclick=()=>{activePlayer=i;renderTabs();renderHeroes()};
-  tabs.appendChild(b);
- }
-}
-
-function renderHeroes(){
- const box=document.getElementById("heroes");
- box.innerHTML="";
- heroes.forEach((h,i)=>{
-  const d=document.createElement("div");
-  d.className="card hero-card"+(choices[activePlayer]===i?" active":"");
-  d.style.setProperty("--c",h.color);
-  d.innerHTML=`<div class="hero-icon">${h.emoji}</div><strong>${h.name}</strong><small>${h.desc}</small>`;
-  d.onclick=()=>{
-   choices[activePlayer]=i;
-   renderHeroes();
-   document.getElementById("selectionStatus").textContent=
-    "PLAYER "+(activePlayer+1)+" SELECTED: "+h.name;
-  };
-  box.appendChild(d);
+let mode=1,hero=0,arena="city";
+function choose(group,callback){
+ document.querySelectorAll("#"+group+" .choice,#"+group+" .avatar").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+   document.querySelectorAll("#"+group+" .choice,#"+group+" .avatar").forEach(x=>x.classList.remove("active"));
+   btn.classList.add("active");callback(btn.dataset.value);
+  });
  });
- document.getElementById("selectionStatus").textContent=
- "PLAYER "+(activePlayer+1)+" SELECTED: "+heroes[choices[activePlayer]].name;
 }
-
-function setArena(name,el){
- arena=name;
- document.querySelectorAll(".arena-card").forEach(x=>x.classList.remove("active"));
- el.classList.add("active");
-}
-
-function launch(){
- const q=new URLSearchParams({
-  players:mode,
-  arena:arena,
-  heroes:choices.slice(0,mode).join(",")
- });
- location.href="game.html?"+q.toString();
-}
-renderTabs();renderHeroes();
+choose("modes",v=>mode=Number(v));
+choose("heroes",v=>hero=Number(v));
+choose("arenas",v=>arena=v);
+document.getElementById("start").addEventListener("click",()=>{
+ const difficulty=document.getElementById("difficulty").value;
+ location.href="game.html?players="+mode+"&hero="+hero+"&arena="+arena+"&difficulty="+difficulty;
+});
 </script>
 </body>
 </html>
