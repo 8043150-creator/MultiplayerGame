@@ -1,225 +1,202 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>THE BACKROOMS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEON ARENA</title>
 
 <style>
-*{box-sizing:border-box}
-
-html,body{
-    margin:0;
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    background:#050505;
-    font-family:Arial,Helvetica,sans-serif;
-    color:#eee;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-body{
-    display:flex;
-    align-items:center;
-    justify-content:center;
+body {
+    background: #080914;
+    color: white;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
 }
 
-.background{
-    position:fixed;
-    inset:0;
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
     background:
-        radial-gradient(
-            ellipse at center,
-            rgba(177,164,67,.32),
-            rgba(0,0,0,.88) 75%
-        ),
-        #111;
+    radial-gradient(circle at 20% 30%, #5224a533, transparent 40%),
+    radial-gradient(circle at 80% 70%, #087cbd33, transparent 40%);
+    z-index: -1;
 }
 
-.background:after{
-    content:"";
-    position:absolute;
-    inset:0;
-    opacity:.16;
-    background:
-        repeating-linear-gradient(
-            90deg,
-            transparent 0,
-            transparent 80px,
-            rgba(255,255,255,.08) 81px,
-            transparent 82px
-        ),
-        repeating-linear-gradient(
-            0deg,
-            transparent 0,
-            transparent 80px,
-            rgba(255,255,255,.05) 81px,
-            transparent 82px
-        );
-    transform:scale(1.2);
+.container {
+    width: 92%;
+    max-width: 900px;
+    text-align: center;
+    padding: 35px 15px;
 }
 
-.menu{
-    position:relative;
-    z-index:2;
-    width:min(900px,92%);
-    text-align:center;
+.logo {
+    font-size: clamp(45px, 9vw, 85px);
+    font-weight: 1000;
+    letter-spacing: 5px;
+    color: #fff;
+    text-shadow: 0 0 15px #8b5cf6, 0 0 40px #6d28d9;
 }
 
-.warning{
-    font-size:12px;
-    letter-spacing:7px;
-    color:#aaa05c;
-    margin-bottom:20px;
+.subtitle {
+    color: #aaaac5;
+    margin: 12px 0 35px;
+    letter-spacing: 4px;
+    font-size: 12px;
 }
 
-.logo{
-    font-size:clamp(55px,10vw,115px);
-    line-height:.9;
-    letter-spacing:15px;
-    font-weight:900;
-    color:#ddd28b;
-    text-shadow:
-        0 0 8px rgba(255,239,128,.5),
-        0 0 35px rgba(255,235,80,.15);
+.section-title {
+    margin-bottom: 18px;
+    font-size: 17px;
+    color: #b9b4d5;
+    letter-spacing: 2px;
 }
 
-.subtitle{
-    margin-top:25px;
-    color:#888;
-    font-size:13px;
-    letter-spacing:6px;
+.modes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
 }
 
-.buttons{
-    margin-top:55px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:12px;
+.mode {
+    background: #17182b;
+    border: 2px solid #30314c;
+    border-radius: 15px;
+    padding: 23px 8px;
+    cursor: pointer;
+    transition: .2s;
+    color: white;
 }
 
-button{
-    width:320px;
-    max-width:90vw;
-    padding:18px;
-    background:rgba(10,10,10,.75);
-    border:1px solid #77734e;
-    color:#d9d18d;
-    font-size:15px;
-    letter-spacing:4px;
-    cursor:pointer;
-    transition:.2s;
+.mode:hover, .mode.active {
+    border-color: #a78bfa;
+    background: #292044;
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px #8b5cf644;
 }
 
-button:hover{
-    background:#d8d08a;
-    color:#111;
-    box-shadow:0 0 30px rgba(230,220,110,.25);
+.mode .emoji {
+    font-size: 35px;
+    margin-bottom: 12px;
 }
 
-.warningText{
-    margin:55px auto 0;
-    max-width:550px;
-    color:#555;
-    font-size:11px;
-    line-height:2;
+.mode h3 {
+    font-size: 17px;
 }
 
-.version{
-    position:fixed;
-    bottom:15px;
-    right:20px;
-    color:#333;
-    font-size:10px;
+.mode p {
+    color: #aaa;
+    font-size: 12px;
+    margin-top: 7px;
+}
+
+.play {
+    margin-top: 35px;
+    padding: 18px 65px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #7c3aed, #2563eb);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 25px #7c3aed66;
+    transition: .2s;
+}
+
+.play:hover {
+    transform: scale(1.06);
+}
+
+.instructions {
+    margin-top: 30px;
+    color: #85859f;
+    font-size: 12px;
+    line-height: 2;
+}
+
+@media(max-width:600px) {
+    .modes {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="background"></div>
+<div class="container">
 
-<div class="menu">
+    <div class="logo">NEON ARENA</div>
+    <div class="subtitle">ONE ARENA. FOUR PLAYERS. ENDLESS CHAOS.</div>
 
-    <div class="warning">
-        ⚠ NO-CLIP DETECTED ⚠
+    <div class="section-title">SELECT YOUR GAME MODE</div>
+
+    <div class="modes">
+
+        <div class="mode active" onclick="selectMode(1,this)">
+            <div class="emoji">👤</div>
+            <h3>SOLO</h3>
+            <p>1 Player</p>
+        </div>
+
+        <div class="mode" onclick="selectMode(2,this)">
+            <div class="emoji">👥</div>
+            <h3>DUOS</h3>
+            <p>2 Players</p>
+        </div>
+
+        <div class="mode" onclick="selectMode(3,this)">
+            <div class="emoji">⚡</div>
+            <h3>TRIOS</h3>
+            <p>3 Players</p>
+        </div>
+
+        <div class="mode" onclick="selectMode(4,this)">
+            <div class="emoji">🏆</div>
+            <h3>SQUADS</h3>
+            <p>4 Players</p>
+        </div>
+
     </div>
 
-    <div class="logo">
-        BACKROOMS
+    <button class="play" onclick="startGame()">PLAY NOW →</button>
+
+    <div class="instructions">
+        LOCAL MULTIPLAYER • SAME COMPUTER<br>
+        COLLECT • DODGE • SURVIVE • WIN
     </div>
 
-    <div class="subtitle">
-        THERE IS NO WAY OUT
-    </div>
-
-    <div class="buttons">
-
-        <button onclick="startGame()">
-            ENTER LEVEL 0
-        </button>
-
-        <button onclick="controls()">
-            CONTROLS
-        </button>
-
-    </div>
-
-    <div class="warningText">
-        You have entered a place that should not exist.<br>
-        The walls repeat. The lights never stop buzzing.<br>
-        Something is moving somewhere behind you.
-    </div>
-
-</div>
-
-<div class="version">
-    BACKROOMS // PRE-ALPHA
 </div>
 
 <script>
-function startGame(){
-    window.location.href="game.html?level=0";
+let selectedPlayers = 1;
+
+function selectMode(players, element) {
+    selectedPlayers = players;
+
+    document.querySelectorAll(".mode").forEach(m => {
+        m.classList.remove("active");
+    });
+
+    element.classList.add("active");
 }
 
-function controls(){
-    alert(
-`CONTROLS
-
-W A S D
-Move
-
-MOUSE
-Look
-
-SHIFT
-Sprint
-
-F
-Flashlight
-
-E
-Interact / Hide / Open
-
-ESC
-Release mouse
-
-OBJECTIVE
-
-Explore the level.
-Find keys.
-Open doors.
-Hide from the Entity.
-Find the exit.
-
-WARNING:
-The Entity can hear you running.`
-    );
+function startGame() {
+    window.location.href = "game.html?players=" + selectedPlayers;
 }
 </script>
 
 </body>
 </html>
-```
