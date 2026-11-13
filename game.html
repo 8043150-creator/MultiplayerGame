@@ -4,34 +4,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NEON ARENA 3.0</title>
+<title>NEON ARENA 4.0 - MONSTER MAYHEM</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#050916;color:white;font-family:Arial;overflow:hidden}
-canvas{display:block;width:100vw;height:100vh}
-#hud{position:fixed;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;gap:7px;flex-wrap:wrap;pointer-events:none}
-.panel{background:#08172beF;border:1px solid #42688c;padding:9px 12px;border-radius:10px}
-.panel b{font-size:10px;color:#6eeaff;letter-spacing:2px}
-.panel span{display:block;font-weight:bold;margin-top:4px}
-#team{position:fixed;bottom:10px;left:10px;display:flex;gap:7px;flex-wrap:wrap;pointer-events:none}
-.playercard{background:#08172bee;border:1px solid #42688c;border-radius:9px;padding:8px;width:125px;font-size:11px}
-.bar{height:6px;background:#26354b;border-radius:8px;margin-top:5px;overflow:hidden}
-.bar i{display:block;height:100%;background:#5cf2ae}
-#help{position:fixed;right:10px;bottom:10px;background:#08172bee;border:1px solid #42688c;border-radius:9px;padding:10px;font-size:10px;line-height:1.7;color:#c3d4ee;pointer-events:none}
-#overlay{position:fixed;inset:0;z-index:5;background:#020614d9;display:flex;align-items:center;justify-content:center;padding:12px}
-.modal{width:min(680px,96vw);max-height:94vh;overflow:auto;text-align:center;background:linear-gradient(145deg,#182b49,#080e20);border:1px solid #5adfff66;border-radius:20px;padding:25px;box-shadow:0 20px 80px #000}
-h1{font-size:clamp(35px,7vw,65px);line-height:.95;color:#72eaff;text-shadow:0 0 25px #27cfff66}
-.sub{font-size:13px;color:#b4c7e7;line-height:1.6}
-button{cursor:pointer;border:0;border-radius:9px;padding:12px 17px;margin:5px;font-weight:bold;background:linear-gradient(90deg,#1acde5,#6578ff);color:#06111c}
-.secondary{background:#263653;color:white}
+body{margin:0;background:#050914;color:white;font-family:Arial,sans-serif;overflow:hidden}
+canvas{width:100vw;height:100vh;display:block}
+#hud{position:fixed;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;gap:7px;flex-wrap:wrap;pointer-events:none}
+.panel{background:#071529ed;border:1px solid #47749c;padding:9px 13px;border-radius:11px;box-shadow:0 5px 20px #0008}
+.panel b{font-size:10px;letter-spacing:2px;color:#73eaff}
+.panel span{display:block;font-size:15px;font-weight:bold;margin-top:4px}
+#team{position:fixed;bottom:12px;left:12px;display:flex;gap:8px;flex-wrap:wrap;pointer-events:none}
+.playercard{background:#071529ed;border:1px solid #47749c;border-radius:10px;padding:9px;width:135px;font-size:11px}
+.bar{height:6px;background:#26364e;border-radius:8px;overflow:hidden;margin-top:6px}
+.bar i{height:100%;display:block;background:#65f4ae}
+#help{position:fixed;bottom:12px;right:12px;background:#071529ed;border:1px solid #47749c;border-radius:10px;padding:10px;font-size:10px;line-height:1.7;color:#c5d7ed;pointer-events:none}
+#overlay{position:fixed;inset:0;background:#020614d9;backdrop-filter:blur(9px);z-index:5;display:flex;align-items:center;justify-content:center;padding:12px}
+.modal{width:min(720px,96vw);max-height:94vh;overflow:auto;text-align:center;background:linear-gradient(145deg,#1a3150,#080e20);border:1px solid #5ceaff66;border-radius:20px;padding:25px;box-shadow:0 25px 100px #000}
+h1{font-size:clamp(34px,7vw,65px);line-height:.95;color:#76eaff;text-shadow:0 0 25px #2cdfff77;margin:15px 0}
+.sub{font-size:13px;line-height:1.65;color:#b6c9e8}
+button{cursor:pointer;border:0;border-radius:10px;padding:12px 18px;margin:5px;font-weight:bold;background:linear-gradient(90deg,#1acde5,#6578ff);color:#06111c}
+.secondary{background:#263b5c;color:white;border:1px solid #6483a7}
 .shopgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:15px 0;text-align:left}
-.item{background:#0b1a32;border:1px solid #45658d;border-radius:12px;padding:12px}
-.item h3{font-size:14px;color:#82edff;margin:0 0 6px}
-.item p{font-size:11px;color:#b2c6e5;min-height:30px}
+.item{background:#0b1a31;border:1px solid #45678e;border-radius:12px;padding:13px}
+.item h3{font-size:14px;color:#80edff;margin:0 0 7px}
+.item p{font-size:11px;color:#b4c8e7;min-height:28px}
 .item button{width:100%;margin:0;padding:10px}
-#timer{font-size:35px;font-weight:900;color:#75edff}
-#toast{position:fixed;top:100px;left:50%;transform:translateX(-50%);background:#08172b;border:1px solid #5ceaff;border-radius:30px;padding:11px 17px;opacity:0;z-index:4;pointer-events:none;font-size:12px}
-@media(max-width:600px){#help{display:none}.shopgrid{grid-template-columns:1fr}}
+#timer{font-size:38px;font-weight:1000;color:#7ceeff;text-shadow:0 0 20px #3deaff}
+#toast{position:fixed;top:100px;left:50%;transform:translateX(-50%);z-index:4;background:#081a30;border:1px solid #5deaff;border-radius:30px;padding:11px 18px;opacity:0;transition:.2s;pointer-events:none;font-size:12px}
+#bossbar{position:fixed;top:85px;left:50%;transform:translateX(-50%);width:min(420px,75vw);display:none;pointer-events:none;text-align:center}
+#bossbar div{height:9px;background:#261b31;border:1px solid #ff6599;border-radius:9px;overflow:hidden}
+#bossbar i{display:block;height:100%;background:#ff477e}
+#bossbar b{font-size:10px;color:#ffb5d1;letter-spacing:2px}
+@media(max-width:650px){#help{display:none}.shopgrid{grid-template-columns:1fr}.panel{padding:7px}.playercard{width:110px}}
 </style>
 </head>
 <body>
@@ -39,36 +43,38 @@ button{cursor:pointer;border:0;border-radius:9px;padding:12px 17px;margin:5px;fo
 
 <div id="hud">
  <div class="panel"><b>NEON ARENA</b><span id="wave">WAVE 1</span></div>
- <div class="panel"><b>MONSTERS</b><span id="enemies">0</span></div>
+ <div class="panel"><b>ENEMIES</b><span id="enemies">0</span></div>
  <div class="panel"><b>SCORE</b><span id="score">0</span></div>
  <div class="panel"><b>COINS</b><span id="coins">0</span></div>
+ <div class="panel"><b>ELIMS</b><span id="kills">0</span></div>
 </div>
 
+<div id="bossbar"><b>ARENA OVERLORD</b><div><i id="bossfill" style="width:100%"></i></div></div>
 <div id="team"></div>
 <div id="help">
- <b style="color:#71eaff">EASY CONTROLS</b><br>
+ <b style="color:#72eaff">EASY CONTROLS</b><br>
  P1: WASD · SHIFT dash<br>
  P2: Arrow keys · Right Shift dash<br>
  P3: IJKL · O dash<br>
  P4: Numpad 8456 · 0 dash<br>
- <span style="color:#70f5b3">Shooting is automatic</span><br>
- <span style="color:#70f5b3">Walk near teammates to revive</span>
+ <span style="color:#73f5b2">Automatic shooting</span><br>
+ <span style="color:#73f5b2">Walk near teammates to revive</span><br>
+ ESC: Pause
 </div>
-
 <div id="toast"></div>
+
 <div id="overlay"><div class="modal" id="modal">
- <div style="letter-spacing:4px;color:#70eaff;font-size:11px">NEON STUDIOS</div>
- <h1>MONSTER<br>MAYHEM</h1>
- <p class="sub">Explore the arena. Defeat monsters. Collect coins. Upgrade your team. Survive as many waves as possible.</p>
+ <div style="letter-spacing:4px;color:#72eaff;font-size:11px">NEON STUDIOS PRESENTS</div>
+ <h1>MONSTER<br>MAYHEM 4.0</h1>
+ <p class="sub">Explore dangerous arenas. Defeat monsters. Collect coins. Upgrade your equipment. Survive the endless waves.</p>
  <p class="sub" id="setup"></p>
- <button id="start">START GAME</button>
+ <button id="start">ENTER THE ARENA</button>
  <button class="secondary" onclick="location.href='index.html'">MAIN MENU</button>
 </div></div>
 
 <script>
 (()=>{
 "use strict";
-
 const canvas=document.querySelector("#game");
 const ctx=canvas.getContext("2d");
 const $=id=>document.getElementById(id);
@@ -86,24 +92,24 @@ const controls=[
  {up:"8",down:"5",left:"4",right:"6",dash:"0"}
 ];
 
-const palettes={
- city:{floor:"#101a33",grid:"#285c87",glow:"#39dfff"},
- lava:{floor:"#301b22",grid:"#874332",glow:"#ff793e"},
- ice:{floor:"#122b40",grid:"#4b91bd",glow:"#79eaff"},
- toxic:{floor:"#1b2d23",grid:"#477c38",glow:"#9aff55"}
+const themes={
+ city:{floor:"#111a31",grid:"#294b6e",glow:"#35dfff",wall:"#31465f",accent:"#ff4f9c"},
+ lava:{floor:"#2c1a21",grid:"#78402f",glow:"#ff743d",wall:"#59332e",accent:"#ffc05a"},
+ ice:{floor:"#142b40",grid:"#4383a9",glow:"#80eaff",wall:"#315875",accent:"#c4f4ff"},
+ toxic:{floor:"#192b20",grid:"#456d37",glow:"#9aff53",wall:"#354f2d",accent:"#d5ff5b"}
 };
-const pal=palettes[arena]||palettes.city;
+const pal=themes[arena]||themes.city;
 
 let W,H,DPR,keys={};
-let state="intro",clock=0,last=0;
-const world={w:2400,h:1700};
+let state="intro",clock=0,last=0,hudClock=0;
+const world={w:2600,h:1900};
 let camera={x:0,y:0};
-let players=[],monsters=[],bullets=[],particles=[],pickups=[],obstacles=[],decor=[];
-let wave=1,score=0,coins=0,spawnLeft=0,spawnTimer=0;
-let shopTime=0,shake=0,toastTime=0;
-let upgrades={damage:0,rate:0,health:0,speed:0};
-let stats={damage:26,rate:.35,maxHp:100,speed:195};
-let hudClock=0;
+let players=[],monsters=[],bullets=[],particles=[],pickups=[],obstacles=[],decor=[],hazards=[];
+let wave=1,score=0,coins=0,totalKills=0;
+let spawnLeft=0,spawnTimer=0,shopTime=0,shake=0,toastTime=0;
+let totalUpgrades=0;
+let stats={damage:26,rate:.34,maxHp:100,speed:195,dashSpeed:540};
+let upgrades={damage:0,rate:0,health:0,speed:0,armor:0,magnet:0};
 
 function resize(){
  DPR=Math.min(devicePixelRatio||1,2);
@@ -116,38 +122,71 @@ addEventListener("resize",resize);resize();
 const rand=(a,b)=>a+Math.random()*(b-a);
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+const lerp=(a,b,t)=>a+(b-a)*t;
 
 function toast(msg){
  $("toast").textContent=msg;
  $("toast").style.opacity=1;
  toastTime=1.8;
 }
-
 function burst(x,y,color,n=12,power=130){
  for(let i=0;i<n;i++){
   const a=rand(0,Math.PI*2),v=rand(25,power);
-  particles.push({
-   x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,
-   life:rand(.25,.8),max:.8,size:rand(2,5),color
-  });
+  particles.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,
+   life:rand(.3,.85),max:.85,size:rand(2,6),color});
  }
+}
+function ring(x,y,color){
+ particles.push({x,y,vx:0,vy:0,life:.55,max:.55,size:10,color,ring:true});
 }
 
 function makeMap(){
- obstacles=[];decor=[];
- const blocks=[
-  [400,300,210,110],[820,240,170,190],
-  [1370,330,190,110],[1840,270,180,170],
-  [270,740,140,220],[690,900,230,120],
-  [1130,700,170,170],[1580,890,240,110],
-  [2020,720,120,220],[480,1250,230,100],
-  [1000,1280,160,130],[1490,1230,210,100],
-  [1900,1260,180,120]
- ];
- blocks.forEach(b=>obstacles.push({x:b[0],y:b[1],w:b[2],h:b[3]}));
- for(let i=0;i<90;i++){
-  decor.push({x:rand(30,world.w-30),y:rand(80,world.h-30),
-   r:rand(5,18),type:Math.random()<.5?"light":"rock"});
+ obstacles=[];decor=[];hazards=[];
+ // Arena architecture: buildings, cover and raised-looking platforms.
+ const layouts={
+ city:[
+  [300,280,260,150],[760,220,190,230],[1320,290,280,150],
+  [1930,250,230,210],[250,760,170,260],[680,930,280,130],
+  [1120,720,220,220],[1600,920,290,140],[2130,730,180,260],
+  [380,1390,270,140],[900,1430,200,180],[1480,1350,260,130],
+  [2040,1400,240,150]
+ ],
+ lava:[
+  [320,300,250,150],[800,240,220,200],[1390,300,230,170],
+  [1910,270,250,180],[260,820,220,180],[760,950,210,160],
+  [1200,750,240,180],[1650,940,220,160],[2100,780,200,220],
+  [430,1400,240,150],[1050,1370,200,200],[1630,1400,250,150]
+ ],
+ ice:[
+  [330,280,250,180],[830,250,180,230],[1370,300,260,160],
+  [1940,260,220,210],[270,790,180,230],[730,930,260,150],
+  [1200,740,190,220],[1630,900,260,150],[2110,760,180,240],
+  [400,1390,230,150],[970,1360,210,180],[1530,1370,260,150]
+ ],
+ toxic:[
+  [310,280,260,160],[800,250,190,210],[1380,310,240,160],
+  [1950,270,230,200],[270,780,180,240],[720,930,260,150],
+  [1190,740,200,210],[1640,920,250,150],[2110,770,180,230],
+  [390,1390,250,150],[980,1370,210,190],[1570,1390,240,150]
+ ]
+ };
+ (layouts[arena]||layouts.city).forEach(b=>obstacles.push({x:b[0],y:b[1],w:b[2],h:b[3]}));
+
+ // Decorative props and lights.
+ for(let i=0;i<160;i++){
+  decor.push({
+   x:rand(40,world.w-40),y:rand(80,world.h-40),
+   r:rand(5,17),type:["light","rock","plant","crate"][Math.floor(rand(0,4))],
+   phase:rand(0,6.28),scale:rand(.7,1.3)
+  });
+ }
+
+ // Environmental hazard pools.
+ for(let i=0;i<9;i++){
+  hazards.push({
+   x:rand(150,world.w-150),y:rand(150,world.h-150),
+   r:rand(40,75),phase:rand(0,6.28),damage:5
+  });
  }
 }
 
@@ -155,55 +194,57 @@ function makePlayers(){
  players=[];
  for(let i=0;i<count;i++){
   players.push({
-   id:i,x:world.w/2+Math.cos(i/count*6.28)*40,
-   y:world.h/2+Math.sin(i/count*6.28)*40,
+   id:i,x:world.w/2+Math.cos(i/count*6.28)*45,
+   y:world.h/2+Math.sin(i/count*6.28)*45,
    vx:0,vy:0,r:15,hp:stats.maxHp,maxHp:stats.maxHp,
-   down:false,eliminated:false,downTimer:15,revive:0,
+   down:false,eliminated:false,downTimer:18,revive:0,
    dashTime:0,dashLock:false,invuln:0,shootWait:rand(0,.3),
    faceX:0,faceY:-1,color:colors[i],
-   name:"PLAYER "+(i+1),kills:0
+   name:"PLAYER "+(i+1),kills:0,armor:0
   });
  }
 }
 
 function resetGame(){
- wave=1;score=0;coins=0;
- upgrades={damage:0,rate:0,health:0,speed:0};
- stats={damage:26,rate:.35,maxHp:100,speed:195};
+ wave=1;score=0;coins=0;totalKills=0;totalUpgrades=0;
+ stats={damage:26,rate:.34,maxHp:100,speed:195,dashSpeed:540};
+ upgrades={damage:0,rate:0,health:0,speed:0,armor:0,magnet:0};
  monsters=[];bullets=[];particles=[];pickups=[];
  makeMap();makePlayers();beginWave();
 }
 
 function beginWave(){
  state="running";
- spawnLeft=wave%5===0?1:Math.min(7+wave*3,40);
+ spawnLeft=wave%5===0?1:Math.min(8+wave*3,48);
  spawnTimer=1;
  $("overlay").style.display="none";
- toast(wave%5===0?"BOSS WAVE!":"WAVE "+wave+" STARTED!");
+ toast(wave%5===0?"BOSS INCOMING!":"WAVE "+wave+" STARTED!");
 }
 
 function makeMonster(boss=false){
- let side=Math.floor(rand(0,4)),x,y;
- if(side===0){x=rand(30,world.w-30);y=30}
- if(side===1){x=world.w-30;y=rand(80,world.h-30)}
- if(side===2){x=rand(30,world.w-30);y=world.h-30}
- if(side===3){x=30;y=rand(80,world.h-30)}
+ const side=Math.floor(rand(0,4));
+ let x,y;
+ if(side===0){x=rand(40,world.w-40);y=35}
+ if(side===1){x=world.w-35;y=rand(100,world.h-35)}
+ if(side===2){x=rand(40,world.w-40);y=world.h-35}
+ if(side===3){x=35;y=rand(100,world.h-35)}
 
- const type=boss?"boss":["runner","brute","spitter"][Math.floor(rand(0,3))];
+ const type=boss?"boss":["runner","brute","spitter","stalker"][Math.floor(rand(0,4))];
  const data={
-  runner:[36,120,13,8,"#ffca5c"],
-  brute:[110,48,23,18,"#ff526e"],
-  spitter:[60,60,17,10,"#ad82ff"],
-  boss:[950,42,43,25,"#ff3e85"]
+  runner:[40,125,13,9,"#ffca5c"],
+  brute:[125,48,23,20,"#ff526e"],
+  spitter:[65,62,17,11,"#ad82ff"],
+  stalker:[75,88,16,13,"#ff9b53"],
+  boss:[1100,43,45,27,"#ff3e85"]
  }[type];
 
  monsters.push({
   x,y,vx:0,vy:0,type,
-  hp:data[0]*diff*(1+wave*.13),
-  maxHp:data[0]*diff*(1+wave*.13),
+  hp:data[0]*diff*(1+wave*.12),
+  maxHp:data[0]*diff*(1+wave*.12),
   speed:data[1]*diff,r:data[2],damage:data[3]*diff,
   color:data[4],attack:rand(.5,1.4),
-  flash:0,bob:rand(0,6.28)
+  flash:0,bob:rand(0,6.28),phase:rand(0,6.28)
  });
 }
 
@@ -215,13 +256,12 @@ function blocked(x,y,r){
  }
  return false;
 }
-
 function moveEntity(e,dt){
  const nx=e.x+e.vx*dt,ny=e.y+e.vy*dt;
  if(!blocked(nx,e.y,e.r))e.x=nx;else e.vx=0;
  if(!blocked(e.x,ny,e.r))e.y=ny;else e.vy=0;
  e.x=clamp(e.x,20,world.w-20);
- e.y=clamp(e.y,70,world.h-20);
+ e.y=clamp(e.y,80,world.h-20);
 }
 
 function nearestMonster(p){
@@ -239,46 +279,49 @@ function shoot(p){
  if(!m)return;
  p.shootWait=stats.rate;
  let dx=m.x-p.x,dy=m.y-p.y;
- let d=Math.hypot(dx,dy)||1;
+ const d=Math.hypot(dx,dy)||1;
  dx/=d;dy/=d;
  p.faceX=dx;p.faceY=dy;
  bullets.push({
-  x:p.x+dx*19,y:p.y+dy*19,
-  vx:dx*620,vy:dy*620,r:5,
-  life:1.4,damage:stats.damage,
-  color:p.color,owner:p.id
+  x:p.x+dx*19,y:p.y+dy*19,vx:dx*650,vy:dy*650,
+  r:5,life:1.5,damage:stats.damage,color:p.color,owner:p.id
  });
  burst(p.x+dx*19,p.y+dy*19,p.color,3,40);
 }
 
 function dash(p){
  if(p.dashTime>0||p.down)return;
- let dx=p.vx,dy=p.vy;
- let d=Math.hypot(dx,dy);
+ let dx=p.vx,dy=p.vy,d=Math.hypot(dx,dy);
  if(d<1){dx=p.faceX;dy=p.faceY;d=Math.hypot(dx,dy)||1}
- p.vx=dx/d*540;p.vy=dy/d*540;
- p.dashTime=.42;p.invuln=.3;
- burst(p.x,p.y,p.color,16,120);
+ p.vx=dx/d*stats.dashSpeed;
+ p.vy=dy/d*stats.dashSpeed;
+ p.dashTime=.4;p.invuln=.35;
+ burst(p.x,p.y,p.color,18,130);
+ ring(p.x,p.y,p.color);
 }
 
 function hurtPlayer(p,damage){
  if(p.down||p.invuln>0)return;
- p.hp-=damage;p.invuln=.35;shake=5;
+ const reduced=damage*(1-upgrades.armor*.08);
+ p.hp-=reduced;p.invuln=.35;shake=5;
  burst(p.x,p.y,"#ff5579",10,100);
  if(p.hp<=0){
-  p.hp=0;p.down=true;p.downTimer=15;p.revive=0;
+  p.hp=0;p.down=true;p.downTimer=18;p.revive=0;
   toast(p.name+" IS DOWN! GET CLOSE TO REVIVE!");
-  burst(p.x,p.y,p.color,25,170);
+  burst(p.x,p.y,p.color,30,170);
  }
 }
 
 function killMonster(m,owner){
- score+=m.type==="boss"?1500:100;
- coins+=m.type==="boss"?100:12;
+ score+=m.type==="boss"?1800:100;
+ coins+=m.type==="boss"?140:12;
+ totalKills++;
  if(players[owner])players[owner].kills++;
- burst(m.x,m.y,m.color,m.type==="boss"?65:23,190);
- if(Math.random()<.25)pickups.push({x:m.x,y:m.y,type:"health",life:15});
- if(Math.random()<.5)pickups.push({x:m.x+12,y:m.y,type:"coin",life:15});
+ burst(m.x,m.y,m.color,m.type==="boss"?75:25,m.type==="boss"?300:180);
+ ring(m.x,m.y,m.color);
+ if(Math.random()<.3)pickups.push({x:m.x,y:m.y,type:"health",life:16});
+ if(Math.random()<.55)pickups.push({x:m.x+12,y:m.y,type:"coin",life:16});
+ if(Math.random()<.08)pickups.push({x:m.x-12,y:m.y,type:"power",life:16});
  monsters=monsters.filter(v=>v!==m);
 }
 
@@ -297,13 +340,12 @@ function update(dt){
 
  shake=Math.max(0,shake-dt*20);
 
- // PLAYER MOVEMENT AND AUTOMATIC SHOOTING
+ // Players
  for(let i=0;i<players.length;i++){
   const p=players[i],c=controls[i];
   p.shootWait=Math.max(0,p.shootWait-dt);
   p.dashTime=Math.max(0,p.dashTime-dt);
   p.invuln=Math.max(0,p.invuln-dt);
-
   if(p.down){
    p.downTimer-=dt;
    if(p.downTimer<=0)p.eliminated=true;
@@ -315,25 +357,21 @@ function update(dt){
   let len=Math.hypot(dx,dy)||1;
   if(dx||dy){dx/=len;dy/=len;p.faceX=dx;p.faceY=dy}
 
-  if(p.dashTime<=.25){
+  if(p.dashTime<=.22){
    p.vx+=(dx*stats.speed-p.vx)*Math.min(1,dt*13);
    p.vy+=(dy*stats.speed-p.vy)*Math.min(1,dt*13);
   }
-
   moveEntity(p,dt);
-
-  // Automatic aiming and shooting
   shoot(p);
 
   if(keys[c.dash]&&!p.dashLock)dash(p);
   p.dashLock=!!keys[c.dash];
  }
 
- // AUTOMATIC PROXIMITY REVIVING
- // A player only needs to stay close for 3 continuous seconds.
+ // Automatic proximity revive: 3 continuous seconds.
  for(const target of players){
   if(!target.down||target.eliminated)continue;
-  let helper=null,nearest=75;
+  let helper=null,nearest=76;
   for(const p of players){
    if(p===target||p.down||p.eliminated)continue;
    const d=dist(p,target);
@@ -342,22 +380,19 @@ function update(dt){
   if(helper){
    target.revive+=dt;
    if(target.revive>=3){
-    target.down=false;
-    target.eliminated=false;
+    target.down=false;target.eliminated=false;
     target.hp=Math.min(target.maxHp,50);
-    target.x=helper.x+rand(-22,22);
-    target.y=helper.y+rand(-22,22);
-    target.revive=0;
-    target.invuln=1.5;
-    burst(target.x,target.y,"#6affb5",35,180);
+    target.x=helper.x+rand(-20,20);
+    target.y=helper.y+rand(-20,20);
+    target.revive=0;target.invuln=1.6;
+    burst(target.x,target.y,"#6affb5",40,190);
+    ring(target.x,target.y,"#6affb5");
     toast(target.name+" REVIVED!");
    }
-  }else{
-   target.revive=0;
-  }
+  }else target.revive=0;
  }
 
- // MONSTERS
+ // Monster AI
  for(const m of monsters){
   const targets=players.filter(p=>!p.down&&!p.eliminated);
   if(!targets.length)continue;
@@ -365,33 +400,31 @@ function update(dt){
   const dx=t.x-m.x,dy=t.y-m.y,d=Math.hypot(dx,dy)||1;
   m.attack-=dt;
 
-  if(m.type==="spitter"&&d<310){
-   m.vx+=(dx/d*25-m.vx)*dt*3;
-   m.vy+=(dy/d*25-m.vy)*dt*3;
+  if(m.type==="spitter"&&d<340){
+   m.vx+=(dx/d*22-m.vx)*dt*3;
+   m.vy+=(dy/d*22-m.vy)*dt*3;
    if(m.attack<=0){
-    m.attack=1.6;
-    bullets.push({
-     x:m.x,y:m.y,vx:dx/d*250,vy:dy/d*250,
-     r:7,life:2,enemy:true,damage:m.damage,color:"#bd83ff"
-    });
+    m.attack=1.5;
+    bullets.push({x:m.x,y:m.y,vx:dx/d*260,vy:dy/d*260,
+     r:7,life:2,enemy:true,damage:m.damage,color:"#bd83ff"});
    }
   }else{
-   m.vx+=(dx/d*m.speed-m.vx)*Math.min(1,dt*2.5);
-   m.vy+=(dy/d*m.speed-m.vy)*Math.min(1,dt*2.5);
+   let speed=m.speed;
+   if(m.type==="stalker")speed*=1.2+Math.sin(clock*4+m.phase)*.2;
+   m.vx+=(dx/d*speed-m.vx)*Math.min(1,dt*2.8);
+   m.vy+=(dy/d*speed-m.vy)*Math.min(1,dt*2.8);
   }
-
   moveEntity(m,dt);
-  m.bob+=dt*3;
-  m.flash=Math.max(0,m.flash-dt);
+  m.bob+=dt*3;m.flash=Math.max(0,m.flash-dt);
 
   if(d<m.r+t.r+5&&m.attack<=0){
-   m.attack=m.type==="boss"?.7:.95;
+   m.attack=m.type==="boss"?.7:.9;
    hurtPlayer(t,m.damage);
-   t.vx+=dx/d*100;t.vy+=dy/d*100;
+   t.vx+=dx/d*110;t.vy+=dy/d*110;
   }
  }
 
- // PROJECTILES
+ // Projectiles
  for(const b of bullets){
   b.x+=b.vx*dt;b.y+=b.vy*dt;b.life-=dt;
   if(b.enemy){
@@ -413,89 +446,104 @@ function update(dt){
  }
  bullets=bullets.filter(b=>b.life>0&&b.x>0&&b.x<world.w&&b.y>0&&b.y<world.h);
 
- // PICKUPS
+ // Pickups
  for(const item of pickups){
   item.life-=dt;
   for(const p of players){
    if(p.down)continue;
-   if(dist(item,p)<p.r+18){
+   const range=18+upgrades.magnet*18;
+   if(dist(item,p)<range){
     if(item.type==="health"){
-     p.hp=Math.min(p.maxHp,p.hp+35);
+     p.hp=Math.min(p.maxHp,p.hp+40);
      toast("HEALTH RESTORED");
-    }else{
+    }else if(item.type==="coin"){
      coins+=10;toast("+10 COINS");
+    }else{
+     p.hp=Math.min(p.maxHp,p.hp+20);
+     coins+=15;toast("POWER CACHE! +15 COINS");
     }
     item.life=0;
-    burst(item.x,item.y,item.type==="health"?"#62ffad":"#ffe36c",12,100);
+    burst(item.x,item.y,item.type==="health"?"#62ffad":"#ffe36c",15,120);
     break;
    }
   }
  }
  pickups=pickups.filter(p=>p.life>0);
 
- // PARTICLES
+ // Environmental hazard damage
+ for(const h of hazards){
+  h.phase+=dt;
+  for(const p of players){
+   if(!p.down&&dist(h,p)<h.r*.55&&Math.sin(h.phase)>-.2){
+    if(!p.hazardWait||p.hazardWait<=0){
+     hurtPlayer(p,h.damage);p.hazardWait=.9;
+    }
+   }
+  }
+ }
+ players.forEach(p=>{if(p.hazardWait)p.hazardWait=Math.max(0,p.hazardWait-dt)});
+
+ // Particle effects
  for(const p of particles){
-  p.x+=p.vx*dt;p.y+=p.vy*dt;
-  p.vx*=.97;p.vy*=.97;p.life-=dt;
+  p.life-=dt;
+  if(!p.ring){
+   p.x+=p.vx*dt;p.y+=p.vy*dt;
+   p.vx*=.97;p.vy*=.97;
+  }else p.size+=dt*90;
  }
  particles=particles.filter(p=>p.life>0);
 
- // SPAWN WAVES
+ // Wave spawns
  if(spawnLeft>0){
   spawnTimer-=dt;
   if(spawnTimer<=0){
    makeMonster(wave%5===0);
    spawnLeft--;
-   spawnTimer=Math.max(.35,1.2-wave*.025);
+   spawnTimer=Math.max(.35,1.15-wave*.02);
   }
  }
 
- if(spawnLeft===0&&monsters.length===0){
-  startShop();
- }
-
- if(players.every(p=>p.down||p.eliminated)){
-  endGame();
- }
-
+ if(spawnLeft===0&&monsters.length===0)startShop();
+ if(players.every(p=>p.down||p.eliminated))endGame();
  updateHUD();
 }
 
-function startShop(){
- state="shop";
- shopTime=10;
- showShop();
-}
-
 const shopItems=[
- {id:"damage",name:"POWER BULLETS",desc:"Increase bullet damage by 25%.",price:45},
+ {id:"damage",name:"POWER CORE",desc:"Increase bullet damage by 25%.",price:45},
  {id:"rate",name:"RAPID FIRE",desc:"Shoot more frequently.",price:55},
- {id:"health",name:"MAX HEALTH",desc:"Increase maximum health by 25 and heal your team.",price:50},
- {id:"speed",name:"SPEED BOOST",desc:"Move faster around the arena.",price:40}
+ {id:"health",name:"REINFORCED ARMOR",desc:"Increase max health by 25 and heal your team.",price:55},
+ {id:"speed",name:"MOVEMENT BOOST",desc:"Increase movement speed.",price:45},
+ {id:"armor",name:"ENERGY SHIELD",desc:"Reduce incoming damage by 8%.",price:65},
+ {id:"magnet",name:"LOOT MAGNET",desc:"Collect pickups from farther away.",price:40}
 ];
 
+function startShop(){
+ state="shop";shopTime=10;showShop();
+}
 function buy(id){
  const item=shopItems.find(v=>v.id===id);
  if(!item||coins<item.price)return;
- coins-=item.price;
- upgrades[id]++;
+ coins-=item.price;totalUpgrades++;upgrades[id]++;
  if(id==="damage")stats.damage+=7;
  if(id==="rate")stats.rate=Math.max(.12,stats.rate-.045);
  if(id==="health"){
   stats.maxHp+=25;
-  players.forEach(p=>{p.maxHp=stats.maxHp;p.hp=Math.min(p.maxHp,p.hp+35)});
+  players.forEach(p=>{p.maxHp=stats.maxHp;p.hp=Math.min(p.maxHp,p.hp+50)});
  }
  if(id==="speed")stats.speed+=22;
+ if(id==="armor")players.forEach(p=>p.hp=Math.min(p.maxHp,p.hp+10));
  toast(item.name+" PURCHASED!");
  showShop();
 }
+window.buyUpgrade=buy;
+window.skipShop=()=>{if(state==="shop"){shopTime=0;wave++;beginWave()}};
 
 function showShop(){
  $("overlay").style.display="flex";
  $("modal").innerHTML=`
  <div style="letter-spacing:3px;color:#6eeaff">WAVE COMPLETE</div>
  <h1>UPGRADE SHOP</h1>
- <p class="sub">Spend your coins before the next wave begins!</p>
+ <p class="sub">Prepare your team before the next wave!</p>
  <div id="timer">${Math.max(0,Math.ceil(shopTime))} SECONDS</div>
  <p class="sub">YOUR COINS: <b style="color:#ffe36c">${coins}</b></p>
  <div class="shopgrid">
@@ -506,25 +554,22 @@ function showShop(){
    <button onclick="window.buyUpgrade('${item.id}')" ${coins<item.price?"disabled":""}>BUY · ${item.price} COINS</button>
   </div>`).join("")}
  </div>
- <p class="sub">Next wave starts automatically when the timer reaches zero.</p>
- <button class="secondary" onclick="window.skipShop()">START NEXT WAVE NOW</button>
- `;
+ <p class="sub">The next wave starts automatically when the timer reaches zero.</p>
+ <button class="secondary" onclick="window.skipShop()">START NEXT WAVE NOW</button>`;
 }
-
-window.buyUpgrade=buy;
-window.skipShop=()=>{if(state==="shop"){shopTime=0;wave++;beginWave()}};
 
 function endGame(){
  state="over";
  $("overlay").style.display="flex";
+ $("bossbar").style.display="none";
  $("modal").innerHTML=`
  <div style="color:#ff8b9e;letter-spacing:3px">TEAM ELIMINATED</div>
  <h1>GAME OVER</h1>
  <p class="sub">You reached wave ${wave}.</p>
- <p class="sub">Final score: <b>${score}</b> · Coins earned: <b>${coins}</b></p>
+ <p class="sub">Score: <b>${score}</b> · Monsters defeated: <b>${totalKills}</b></p>
+ <p class="sub">Upgrades purchased: <b>${totalUpgrades}</b></p>
  <button onclick="location.reload()">PLAY AGAIN</button>
- <button class="secondary" onclick="location.href='index.html'">MAIN MENU</button>
- `;
+ <button class="secondary" onclick="location.href='index.html'">MAIN MENU</button>`;
 }
 
 function updateHUD(){
@@ -534,25 +579,23 @@ function updateHUD(){
  $("enemies").textContent=monsters.length+spawnLeft;
  $("score").textContent=score;
  $("coins").textContent=coins;
-
+ $("kills").textContent=totalKills;
  $("team").innerHTML=players.map(p=>`
  <div class="playercard">
- <b style="color:${p.color}">${p.name}</b>
- <div class="bar"><i style="width:${p.hp/p.maxHp*100}%"></i></div>
- <div>${p.down?(p.eliminated?"ELIMINATED":"DOWN"):"HP "+Math.ceil(p.hp)}</div>
+  <b style="color:${p.color}">${p.name}</b>
+  <div class="bar"><i style="width:${p.hp/p.maxHp*100}%"></i></div>
+  <div>${p.down?(p.eliminated?"ELIMINATED":"DOWN"):"HP "+Math.ceil(p.hp)}</div>
  </div>`).join("");
-
- if(state==="shop"){
-  const timer=$("timer");
-  if(timer)timer.textContent=Math.max(0,Math.ceil(shopTime))+" SECONDS";
- }
+ const boss=monsters.find(m=>m.type==="boss");
+ $("bossbar").style.display=boss?"block":"none";
+ if(boss)$("bossfill").style.width=clamp(boss.hp/boss.maxHp*100,0,100)+"%";
+ if(state==="shop"&&$("timer"))$("timer").textContent=Math.max(0,Math.ceil(shopTime))+" SECONDS";
 }
 
+// 2.5D ENVIRONMENT RENDERING
 function drawFloor(){
- ctx.fillStyle=pal.floor;
- ctx.fillRect(0,0,world.w,world.h);
- ctx.strokeStyle=pal.grid;
- ctx.globalAlpha=.25;ctx.lineWidth=1;
+ ctx.fillStyle=pal.floor;ctx.fillRect(0,0,world.w,world.h);
+ ctx.strokeStyle=pal.grid;ctx.lineWidth=1;ctx.globalAlpha=.25;
  for(let x=0;x<world.w;x+=70){
   ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,world.h);ctx.stroke();
  }
@@ -561,177 +604,274 @@ function drawFloor(){
  }
  ctx.globalAlpha=1;
 
- // Arena boundaries
- ctx.strokeStyle=pal.glow;ctx.lineWidth=8;
+ // Floor lanes and central platform
+ ctx.fillStyle=pal.glow;ctx.globalAlpha=.055;
+ ctx.fillRect(world.w/2-220,80,440,world.h-160);
+ ctx.globalAlpha=1;
+ ctx.strokeStyle=pal.glow;ctx.lineWidth=7;
  ctx.shadowBlur=25;ctx.shadowColor=pal.glow;
  ctx.strokeRect(5,5,world.w-10,world.h-10);
  ctx.shadowBlur=0;
 
- // Decorative lights
- for(const d of decor){
-  if(d.type==="light"){
-   ctx.globalAlpha=.5;
-   ctx.fillStyle=pal.glow;
-   ctx.beginPath();ctx.arc(d.x,d.y,d.r,0,Math.PI*2);ctx.fill();
-  }else{
-   ctx.globalAlpha=.35;
-   ctx.fillStyle="#52657e";
-   ctx.beginPath();ctx.arc(d.x,d.y,d.r,0,Math.PI*2);ctx.fill();
-  }
+ // Center arena emblem
+ ctx.save();ctx.translate(world.w/2,world.h/2);
+ ctx.strokeStyle=pal.glow;ctx.globalAlpha=.2;ctx.lineWidth=8;
+ ctx.beginPath();ctx.arc(0,0,170,0,Math.PI*2);ctx.stroke();
+ ctx.beginPath();ctx.arc(0,0,125,0,Math.PI*2);ctx.stroke();
+ ctx.rotate(clock*.15);
+ for(let i=0;i<8;i++){
+  ctx.rotate(Math.PI/4);
+  ctx.beginPath();ctx.moveTo(0,-125);ctx.lineTo(0,-170);ctx.stroke();
  }
- ctx.globalAlpha=1;
+ ctx.restore();ctx.globalAlpha=1;
+}
+
+function drawDecor(){
+ for(const d of decor){
+  const pulse=.5+.5*Math.sin(clock*2+d.phase);
+  ctx.save();ctx.translate(d.x,d.y);
+  if(d.type==="light"){
+   ctx.globalAlpha=.3+pulse*.4;
+   ctx.fillStyle=pal.glow;
+   ctx.shadowBlur=15;ctx.shadowColor=pal.glow;
+   ctx.beginPath();ctx.arc(0,0,d.r,0,Math.PI*2);ctx.fill();
+  }else if(d.type==="rock"){
+   ctx.fillStyle="#26374b";
+   ctx.beginPath();ctx.ellipse(0,0,d.r*1.3,d.r*.8,-.3,0,Math.PI*2);ctx.fill();
+   ctx.fillStyle="#61758a";ctx.globalAlpha=.4;
+   ctx.beginPath();ctx.ellipse(-3,-3,d.r*.5,d.r*.25,-.3,0,Math.PI*2);ctx.fill();
+  }else if(d.type==="plant"){
+   ctx.fillStyle=pal.accent;
+   for(let i=0;i<4;i++){
+    ctx.rotate(Math.PI/2);
+    ctx.beginPath();ctx.ellipse(0,-d.r*.5,3,d.r*.7,0,0,Math.PI*2);ctx.fill();
+   }
+  }else{
+   ctx.fillStyle="#263c54";ctx.fillRect(-d.r,-d.r,d.r*2,d.r*2);
+   ctx.strokeStyle="#7893ae";ctx.strokeRect(-d.r,-d.r,d.r*2,d.r*2);
+  }
+  ctx.restore();
+ }
 }
 
 function drawObstacles(){
  for(const o of obstacles){
-  ctx.fillStyle="#070e1c";
-  ctx.fillRect(o.x+8,o.y+12,o.w,o.h);
+  const depth=28;
+  // Long side face gives the structures a raised 3D appearance.
+  ctx.fillStyle="#070b15";
+  ctx.fillRect(o.x+10,o.y+depth,o.w,o.h);
+  ctx.fillStyle="#101c2d";
+  ctx.beginPath();
+  ctx.moveTo(o.x,o.y+o.h);
+  ctx.lineTo(o.x+depth,o.y+o.h+depth);
+  ctx.lineTo(o.x+o.w+depth,o.y+o.h+depth);
+  ctx.lineTo(o.x+o.w,o.y+o.h);
+  ctx.closePath();ctx.fill();
+
   const grad=ctx.createLinearGradient(o.x,o.y,o.x,o.y+o.h);
-  grad.addColorStop(0,"#344d6c");
-  grad.addColorStop(1,"#15243b");
+  grad.addColorStop(0,"#425b78");
+  grad.addColorStop(1,pal.wall);
   ctx.fillStyle=grad;
   ctx.fillRect(o.x,o.y,o.w,o.h);
-  ctx.strokeStyle=pal.glow;
-  ctx.globalAlpha=.6;ctx.lineWidth=3;
-  ctx.strokeRect(o.x,o.y,o.w,o.h);
+
+  ctx.fillStyle="#6d8298";
+  ctx.globalAlpha=.25;
+  ctx.fillRect(o.x+8,o.y+8,o.w-16,7);
   ctx.globalAlpha=1;
-  ctx.fillStyle="#8ba9c7";
-  ctx.globalAlpha=.2;
-  ctx.fillRect(o.x+10,o.y+10,o.w-20,5);
+
+  ctx.strokeStyle=pal.glow;ctx.lineWidth=2;
+  ctx.shadowBlur=12;ctx.shadowColor=pal.glow;
+  ctx.strokeRect(o.x,o.y,o.w,o.h);
+  ctx.shadowBlur=0;
+
+  // Glowing windows / panels.
+  ctx.fillStyle=pal.accent;
+  ctx.globalAlpha=.65;
+  for(let x=o.x+20;x<o.x+o.w-15;x+=38){
+   ctx.fillRect(x,o.y+22,17,6);
+  }
   ctx.globalAlpha=1;
  }
 }
 
-function drawHealthBar(x,y,w,h,pct,color){
- ctx.fillStyle="#111a2c";
- ctx.fillRect(x-w/2,y,w,h);
- ctx.fillStyle=color;
- ctx.fillRect(x-w/2,y,w*clamp(pct,0,1),h);
+function drawHazards(){
+ for(const h of hazards){
+  const pulse=.5+.5*Math.sin(clock*3+h.phase);
+  ctx.fillStyle=arena==="lava"?"#ff4c19":arena==="ice"?"#4bd9ff":"#86ff38";
+  ctx.globalAlpha=.12+pulse*.1;
+  ctx.beginPath();ctx.ellipse(h.x,h.y,h.r,h.r*.65,0,0,Math.PI*2);ctx.fill();
+  ctx.globalAlpha=.65;
+  ctx.strokeStyle=ctx.fillStyle;ctx.lineWidth=2;
+  ctx.beginPath();ctx.ellipse(h.x,h.y,h.r,h.r*.65,0,0,Math.PI*2);ctx.stroke();
+  ctx.globalAlpha=1;
+ }
+}
+
+function drawBar(x,y,w,h,pct,color){
+ ctx.fillStyle="#101a2b";ctx.fillRect(x-w/2,y,w,h);
+ ctx.fillStyle=color;ctx.fillRect(x-w/2,y,w*clamp(pct,0,1),h);
 }
 
 function drawPlayer(p){
  const bob=Math.sin(clock*8+p.id)*2;
  ctx.save();ctx.translate(p.x,p.y+bob);
+
  // Shadow
  ctx.fillStyle="#0009";
- ctx.beginPath();ctx.ellipse(0,10,18,9,0,0,Math.PI*2);ctx.fill();
+ ctx.beginPath();ctx.ellipse(0,12,19,8,0,0,Math.PI*2);ctx.fill();
 
  if(p.down){
   ctx.rotate(-.7);
-  ctx.fillStyle="#5a6882";
-  ctx.beginPath();ctx.arc(0,0,14,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle="#687990";
+  ctx.beginPath();ctx.ellipse(0,0,17,9,0,0,Math.PI*2);ctx.fill();
   ctx.restore();
+
+  ctx.save();ctx.translate(p.x,p.y-37);
   if(p.revive>0){
-   ctx.save();ctx.translate(p.x,p.y-35);
-   ctx.fillStyle="#15243b";ctx.fillRect(-27,0,54,7);
-   ctx.fillStyle="#63ffb2";ctx.fillRect(-27,0,54*(p.revive/3),7);
-   ctx.strokeStyle="#a3ffda";ctx.strokeRect(-27,0,54,7);
+   ctx.fillStyle="#12253b";ctx.fillRect(-35,0,70,8);
+   ctx.fillStyle="#63ffb2";ctx.fillRect(-35,0,70*(p.revive/3),8);
+   ctx.strokeStyle="#a3ffda";ctx.strokeRect(-35,0,70,8);
    ctx.fillStyle="white";ctx.font="bold 10px Arial";ctx.textAlign="center";
-   ctx.fillText("REVIVING "+Math.ceil((3-p.revive)*10)/10+"s",0,-7);
-   ctx.restore();
+   ctx.fillText("REVIVING "+(3-p.revive).toFixed(1)+"s",0,-8);
   }else{
-   ctx.save();ctx.translate(p.x,p.y-35);
-   ctx.fillStyle="#ff839a";ctx.font="bold 11px Arial";ctx.textAlign="center";
-   ctx.fillText("DOWN - GET CLOSE",0,0);ctx.restore();
+   ctx.fillStyle="#ff9cb3";ctx.font="bold 11px Arial";ctx.textAlign="center";
+   ctx.fillText("DOWN - GET CLOSE",0,0);
   }
-  return;
+  ctx.restore();return;
  }
 
- if(p.invuln>0&&Math.floor(clock*18)%2===0)ctx.globalAlpha=.45;
- ctx.shadowBlur=22;ctx.shadowColor=p.color;
+ if(p.invuln>0&&Math.floor(clock*18)%2===0)ctx.globalAlpha=.4;
+
+ // Animated shadow and body
+ ctx.shadowBlur=25;ctx.shadowColor=p.color;
  ctx.fillStyle=p.color;
- ctx.beginPath();ctx.arc(0,0,15,0,Math.PI*2);ctx.fill();
+ ctx.beginPath();ctx.ellipse(0,0,15,17,0,0,Math.PI*2);ctx.fill();
  ctx.shadowBlur=0;
- ctx.fillStyle="#10243c";
- ctx.beginPath();ctx.arc(0,0,8,0,Math.PI*2);ctx.fill();
+
+ ctx.fillStyle="#10243b";
+ ctx.beginPath();ctx.arc(0,-3,8,0,Math.PI*2);ctx.fill();
+
+ // Direction indicator
  ctx.strokeStyle="white";ctx.lineWidth=3;
- ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(p.faceX*17,p.faceY*17);ctx.stroke();
+ ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(p.faceX*18,p.faceY*18);ctx.stroke();
+
+ // Character armor
+ ctx.strokeStyle="#ffffff77";ctx.lineWidth=2;
+ ctx.beginPath();ctx.arc(0,0,12,0,Math.PI*2);ctx.stroke();
  ctx.restore();
- drawHealthBar(p.x,p.y-27,42,5,p.hp/p.maxHp,p.color);
+ drawBar(p.x,p.y-30,43,5,p.hp/p.maxHp,p.color);
 }
 
 function drawMonster(m){
- ctx.save();ctx.translate(m.x,m.y+Math.sin(m.bob)*2);
+ ctx.save();ctx.translate(m.x,m.y+Math.sin(m.bob)*3);
  ctx.fillStyle="#0009";
- ctx.beginPath();ctx.ellipse(0,12,m.r*1.1,7,0,0,Math.PI*2);ctx.fill();
- ctx.shadowBlur=m.type==="boss"?35:16;
+ ctx.beginPath();ctx.ellipse(0,13,m.r*1.2,8,0,0,Math.PI*2);ctx.fill();
+
+ ctx.shadowBlur=m.type==="boss"?38:18;
  ctx.shadowColor=m.color;
  ctx.fillStyle=m.flash>0?"white":m.color;
- ctx.beginPath();ctx.arc(0,0,m.r,0,Math.PI*2);ctx.fill();
+
+ if(m.type==="brute"){
+  ctx.fillRect(-m.r,-m.r,m.r*2,m.r*2);
+ }else if(m.type==="spitter"){
+  ctx.beginPath();ctx.ellipse(0,0,m.r*1.15,m.r*.8,0,0,Math.PI*2);ctx.fill();
+ }else{
+  ctx.beginPath();ctx.arc(0,0,m.r,0,Math.PI*2);ctx.fill();
+ }
+
  ctx.shadowBlur=0;
- ctx.fillStyle="#180e25";
+ ctx.fillStyle="#190e22";
  ctx.beginPath();ctx.arc(-m.r*.35,-3,3,0,Math.PI*2);ctx.arc(m.r*.35,-3,3,0,Math.PI*2);ctx.fill();
+
+ // Boss crown and glowing markings
+ if(m.type==="boss"){
+  ctx.strokeStyle="#ffd0e1";ctx.lineWidth=4;
+  ctx.beginPath();ctx.moveTo(-20,-35);ctx.lineTo(-12,-52);ctx.lineTo(0,-37);ctx.lineTo(12,-52);ctx.lineTo(20,-35);ctx.stroke();
+ }
  ctx.restore();
- drawHealthBar(m.x,m.y-m.r-13,m.type==="boss"?90:45,5,m.hp/m.maxHp,m.color);
+ drawBar(m.x,m.y-m.r-15,m.type==="boss"?100:48,5,m.hp/m.maxHp,m.color);
+}
+
+function drawPickups(){
+ for(const item of pickups){
+  const pulse=1+Math.sin(clock*7+item.x)*.13;
+  ctx.save();ctx.translate(item.x,item.y);ctx.scale(pulse,pulse);
+  const color=item.type==="health"?"#62ffad":item.type==="coin"?"#ffe36c":"#72eaff";
+  ctx.shadowBlur=20;ctx.shadowColor=color;
+  ctx.fillStyle=color;
+  ctx.beginPath();ctx.arc(0,0,11,0,Math.PI*2);ctx.fill();
+  ctx.shadowBlur=0;ctx.fillStyle="#10233c";
+  ctx.font="bold 13px Arial";ctx.textAlign="center";ctx.textBaseline="middle";
+  ctx.fillText(item.type==="health"?"+":item.type==="coin"?"$":"★",0,0);
+  ctx.restore();
 }
 
 function draw(){
  ctx.clearRect(0,0,W,H);
  const alive=players.filter(p=>!p.eliminated);
  if(alive.length){
-  const focus=alive.reduce((a,b)=>({x:a.x+b.x,y:a.y+b.y}),{x:0,y:0});
-  focus.x/=alive.length;focus.y/=alive.length;
-  camera.x=clamp(focus.x-W/2,0,world.w-W);
-  camera.y=clamp(focus.y-H/2,0,world.h-H);
+  let fx=0,fy=0;
+  alive.forEach(p=>{fx+=p.x;fy+=p.y});
+  fx/=alive.length;fy/=alive.length;
+  camera.x=lerp(camera.x,clamp(fx-W/2,0,world.w-W),.09);
+  camera.y=lerp(camera.y,clamp(fy-H/2,0,world.h-H),.09);
  }else{camera.x=0;camera.y=0}
 
  ctx.save();
  if(shake>0)ctx.translate(rand(-shake,shake),rand(-shake,shake));
  ctx.translate(-camera.x,-camera.y);
- drawFloor();
- drawObstacles();
 
- // Pickups
- for(const item of pickups){
-  ctx.save();ctx.translate(item.x,item.y);
-  ctx.shadowBlur=18;ctx.shadowColor=item.type==="health"?"#65ffad":"#ffe36c";
-  ctx.fillStyle=item.type==="health"?"#65ffad":"#ffe36c";
-  ctx.beginPath();ctx.arc(0,0,11+Math.sin(clock*7)*2,0,Math.PI*2);ctx.fill();
-  ctx.shadowBlur=0;ctx.fillStyle="#13233b";ctx.font="bold 13px Arial";
-  ctx.textAlign="center";ctx.textBaseline="middle";
-  ctx.fillText(item.type==="health"?"+":"$",0,0);
-  ctx.restore();
+ drawFloor();
+ drawHazards();
+ drawDecor();
+ drawObstacles();
+ drawPickups();
+
+ // Depth sorting: entities farther up the screen are drawn first.
+ const entities=[
+  ...monsters.map(m=>({kind:"monster",obj:m,y:m.y})),
+  ...players.map(p=>({kind:"player",obj:p,y:p.y}))
+ ].sort((a,b)=>a.y-b.y);
+
+ for(const e of entities){
+  if(e.kind==="monster")drawMonster(e.obj);
+  else drawPlayer(e.obj);
  }
 
- // Bullets
+ // Projectiles
  for(const b of bullets){
-  ctx.fillStyle=b.color;ctx.shadowBlur=14;ctx.shadowColor=b.color;
+  ctx.fillStyle=b.color;ctx.shadowBlur=15;ctx.shadowColor=b.color;
   ctx.beginPath();ctx.arc(b.x,b.y,b.r,0,Math.PI*2);ctx.fill();
  }
  ctx.shadowBlur=0;
 
- monsters.forEach(drawMonster);
- players.forEach(drawPlayer);
-
+ // Particle effects
  for(const p of particles){
   ctx.globalAlpha=clamp(p.life/p.max,0,1);
-  ctx.fillStyle=p.color;
-  ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle=p.color;ctx.fillStyle=p.color;
+  if(p.ring){
+   ctx.lineWidth=3;
+   ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.stroke();
+  }else{
+   ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();
+  }
  }
  ctx.globalAlpha=1;
-
  ctx.restore();
 
- // Revive hint
+ // Proximity revive hint
  if(state==="running"){
   const down=players.find(p=>p.down&&!p.eliminated);
-  if(down){
-   const helper=players.find(p=>!p.down&&!p.eliminated&&dist(p,down)<75);
-   if(helper){
-    ctx.fillStyle="#75ffc0";
-    ctx.font="bold 12px Arial";
-    ctx.textAlign="center";
-    ctx.fillText("STAY CLOSE TO REVIVE!",W/2,H-65);
-   }
+  if(down&&players.some(p=>!p.down&&!p.eliminated&&dist(p,down)<76)){
+   ctx.fillStyle="#79ffc2";ctx.font="bold 12px Arial";ctx.textAlign="center";
+   ctx.fillText("STAY CLOSE - REVIVING AUTOMATICALLY",W/2,H-65);
   }
  }
 }
 
 function loop(t){
  const dt=Math.min(.035,(t-last)/1000||0);
- last=t;
- update(dt);
- draw();
+ last=t;update(dt);draw();
  requestAnimationFrame(loop);
 }
 
@@ -747,17 +887,23 @@ addEventListener("keydown",e=>{
  const k=e.key.toLowerCase();
  if(["arrowup","arrowdown","arrowleft","arrowright"," "].includes(k))e.preventDefault();
  keys[k]=true;
- if(k==="escape"&&state==="running"){
-  state="paused";
-  $("overlay").style.display="flex";
-  $("modal").innerHTML=`
-   <h1>PAUSED</h1>
-   <p class="sub">Take a break.</p>
-   <button onclick="window.resumeGame()">RESUME</button>
-   <button class="secondary" onclick="location.reload()">RESTART</button>`;
+
+ if(k==="escape"){
+  if(state==="running"){
+   state="paused";
+   $("overlay").style.display="flex";
+   $("modal").innerHTML=`
+    <h1>PAUSED</h1>
+    <p class="sub">Your game is paused.</p>
+    <button onclick="window.resumeGame()">RESUME GAME</button>
+    <button class="secondary" onclick="location.reload()">RESTART</button>`;
+  }else if(state==="paused"){
+   window.resumeGame();
+  }
  }
 });
 addEventListener("keyup",e=>keys[e.key.toLowerCase()]=false);
+
 window.resumeGame=()=>{
  state="running";
  $("overlay").style.display="none";
